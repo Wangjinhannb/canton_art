@@ -16,26 +16,26 @@ function Stage({
   structure:boolean
   impulse:number
 }){
-  const yaw=useRef(0)
+  const yaw=useRef(CAMERA.baseYaw)
   const pitch=useRef(0)
   useFrame(({camera},dt)=>{
-    const targetYaw=pointer.x*CAMERA.pointerYaw+drag.x*CAMERA.dragYaw
+    const targetYaw=CAMERA.baseYaw+pointer.x*CAMERA.pointerYaw+drag.x*CAMERA.dragYaw
     const targetPitch=-pointer.y*CAMERA.pointerPitch-drag.y*CAMERA.dragPitch
     yaw.current=damp(yaw.current,targetYaw,CAMERA.damping,dt)
     pitch.current=damp(pitch.current,targetPitch,CAMERA.damping,dt)
     camera.position.x=Math.sin(yaw.current)*CAMERA.baseZ
     camera.position.z=Math.cos(yaw.current)*CAMERA.baseZ
     camera.position.y=CAMERA.baseY+pitch.current*3.4
-    camera.lookAt(1.15,.12,0)
+    camera.lookAt(1.34,-.02,.04)
   })
 
   return <>
-    <fog attach="fog" args={[COLORS.ink,8.5,16]} />
-    <hemisphereLight args={['#e7d6bb','#0b1011',.36]} />
+    <fog attach="fog" args={[COLORS.ink,7.8,15.2]} />
+    <hemisphereLight args={['#d9c4a2','#090b0c',.48]} />
     <spotLight
       castShadow
-      position={[-4.1,5.2,6.4]}
-      color="#ffdaa8"
+      position={[-4.8,5.7,5.4]}
+      color="#ffd09a"
       intensity={LIGHTING.key}
       angle={Math.PI*.22}
       penumbra={.48}
@@ -44,16 +44,16 @@ function Stage({
       shadow-mapSize={[1536,1536]}
     />
     <spotLight
-      position={[5.2,3.0,2.6]}
-      color="#7ba4ab"
+      position={[5.5,3.3,1.6]}
+      color="#6e98a0"
       intensity={LIGHTING.rim}
       angle={Math.PI*.25}
       penumbra={.68}
       distance={16}
       decay={1.5}
     />
-    <pointLight position={[1.1,-2.0,3]} color="#8c2b26" intensity={LIGHTING.fill} distance={7} decay={2}/>
-    <pointLight position={[-.8,.9,4]} color="#fff0cd" intensity={.5} distance={5} decay={2}/>
+    <pointLight position={[1.0,-1.6,3.4]} color="#9b3f2f" intensity={LIGHTING.fill} distance={7} decay={2}/>
+    <pointLight position={[-1.1,1.1,4.2]} color="#fff0cf" intensity={.62} distance={5} decay={2}/>
 
     <mesh receiveShadow rotation={[-Math.PI/2,0,0]} position={[1.2,-2.18,-.4]}>
       <circleGeometry args={[6,96]}/>
@@ -141,7 +141,7 @@ export default function App(){
       dpr={[1,1.5]}
       shadows
       gl={{antialias:true,powerPreference:'high-performance'}}
-      camera={{position:[0,CAMERA.baseY,CAMERA.baseZ],fov:34,near:.1,far:60}}
+      camera={{position:[-0.95,CAMERA.baseY,CAMERA.baseZ],fov:36,near:.1,far:60}}
       onCreated={({gl})=>{
         gl.setClearColor(COLORS.ink,1)
         gl.outputColorSpace=THREE.SRGBColorSpace
