@@ -1,5 +1,5 @@
 export const COLORS = {
-  ink: '#080706',
+  ink: '#0b0806',
   paper: '#ece4d3',
   paperDim: '#bdb4a4',
   vermilion: '#a83a2f',
@@ -12,26 +12,27 @@ export const COLORS = {
 } as const
 
 export const CAMERA = {
-  baseZ: 7.65,
-  baseY: 0.06,
-  pointerYaw: 0.06,
-  pointerPitch: 0.035,
-  dragYaw: 0.34,
-  dragPitch: 0.15,
-  damping: 4.8,
+  baseZ: 7.35,
+  baseY: 0.18,
+  baseYaw: -0.13,
+  pointerYaw: 0.045,
+  pointerPitch: 0.028,
+  dragYaw: 0.27,
+  dragPitch: 0.12,
+  damping: 4.5,
 } as const
 
 export const LIGHTING = {
-  exposure: 1.03,
-  key: 3.8,
-  rim: 1.05,
-  fill: 0.45,
+  exposure: 1.12,
+  key: 4.65,
+  rim: 1.18,
+  fill: 0.72,
 } as const
 
 export const LION = {
-  headYaw: 0.065,
-  headPitch: 0.035,
-  eyeYaw: 0.16,
-  eyePitch: 0.075,
+  headYaw: 0.052,
+  headPitch: 0.03,
+  eyeYaw: 0.12,
+  eyePitch: 0.06,
   maneCount: 220,
 } as const
